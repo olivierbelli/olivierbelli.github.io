@@ -9,7 +9,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <style>
   	.table{
-  		margin-top: 20px;
   		margin-bottom: 45px;
   	}
   </style>
@@ -22,7 +21,7 @@
 		window.location.reload(true);
 	}
 
-	
+
 	var container = document.getElementById("main")
 	Node.prototype.createRow = function(value,isheader){
 		var tr = document.createElement("tr")
@@ -33,6 +32,8 @@
 	}
 
 	function createElement(attribute,type,description,example){
+		var title = document.createElement("h3")
+		title.innerHTML = attribute
 		var t = document.createElement("table")
 		t.className = "table table-striped table-bordered table-hover table-condensed"
 		var table = document.createElement("tbody")
@@ -45,6 +46,7 @@
 		table.createRow(description,false)
 		table.createRow("Example values",true)
 		table.createRow(example,false)
+		container.appendChild(title)
 		container.appendChild(t)
 	}
 
@@ -74,6 +76,26 @@
 			"type" : "Object",
 			"description" : 'A list of attributes describing the way to apply discounts on the resource. Attributes are : <a href="/#discount.method">method</a>, <a href="/#discount.steps">steps</a>, <a href="/#discount.reset">reset</a>',
 			"examples" : 'Google Compute Engine egress network : <i>{"method" : "Progressive", "steps": [ [1024,1/12], [9216,1/3] ], "reset": False}</i>'
+		},
+		"discount.method" : {
+			"type" : "String",
+			"description" : 'Method to use for calculating the discount. Supported values are "Progressive", "Reservation", and "None". "None" is the default if the attribute is not present',
+			"examples" : '<i>None or "None"</i><br/><i>"Progressive"</i><br/><i>"Reservation"</i><br/>'
+		},
+		"discount.steps" : {
+			"type" : "Array",
+			"description" : 'Additional information for calculating a pricing discount. This is an array of pairs of numeric values that depend on the charge method indicated by the discount method, unitCode and timeCode.',
+			"examples" : '1/12 discount after 1024GB of data, 1/3 after 9216 GB : <i>[ [1024,1/12], [9216,1/3] ]</i>'
+		},
+		"discount.reset" : {
+			"type" : "Boolean",
+			"description" : 'Value to describe if the discount has a maximum or if it resets after the last value (circling).',
+			"examples" : 'If the value is <i>True</i>, then a reset will occur and the price computation will start at 0% discount again'
+		},
+		"freeQuantity" : {
+			"type" : "Number",
+			"description" : 'The value below which the use of the resource is free. The default value is zero',
+			"examples" : 'For the data transfer from an AWS instance to the Internet, the first GB per month is free => <i>freeQuantity : 1</i>'
 		},
 
 	}
