@@ -18,6 +18,11 @@
 <div id="main"style="margin-left:20px;margin-right:20px"></div>
 <div style="text-align: center"><a href="/">See all attributes</a></div>
 <script type="text/javascript">
+	window.onhashchange = function(e){
+		window.location.reload(true);
+	}
+
+	
 	var container = document.getElementById("main")
 	Node.prototype.createRow = function(value,isheader){
 		var tr = document.createElement("tr")
@@ -41,6 +46,10 @@
 		table.createRow("Example values",true)
 		table.createRow(example,false)
 		container.appendChild(t)
+	}
+
+	function fixhref(){
+		var l = document.getElementsByTag
 	}
 
 	var data = {
@@ -77,10 +86,16 @@
 			}
 		}
 		else{
-			var obj = data[url_elements[1]]
-			createElement(url_elements[1],obj["type"],obj["description"],obj["examples"])
-			document.title = url_elements[1]+" attribute"
+			try{
+				var obj = data[url_elements[1]]
+				createElement(url_elements[1],obj["type"],obj["description"],obj["examples"])
+				document.title = url_elements[1]+" attribute"
+			}catch(e){
+				container.style.textAlign = "center"
+				container.innerHTML = "The attribute you're looking for doesn't exist!"
+			}
 		}
+
 	}
 	
 
