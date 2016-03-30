@@ -1,1 +1,91 @@
-Hello world !
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Schema Specifications</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <style>
+  	.table{
+  		margin-top: 20px;
+  		margin-bottom: 45px;
+  	}
+  </style>
+</head>
+<body>
+<div id="main"style="margin-left:20px;margin-right:20px"></div>
+<div style="text-align: center"><a href="/">See all attributes</a></div>
+<script type="text/javascript">
+	var container = document.getElementById("main")
+	Node.prototype.createRow = function(value,isheader){
+		var tr = document.createElement("tr")
+		var el = isheader ? document.createElement("th") : document.createElement("td")
+		el.innerHTML = value
+		tr.appendChild(el)
+		this.appendChild(tr)
+	}
+
+	function createElement(attribute,type,description,example){
+		var t = document.createElement("table")
+		t.className = "table table-striped table-bordered table-hover table-condensed"
+		var table = document.createElement("tbody")
+		t.appendChild(table)
+		table.createRow("Attribute",true)
+		table.createRow(attribute,false)
+		table.createRow("Type",true)
+		table.createRow(type,false)
+		table.createRow("Description",true)
+		table.createRow(description,false)
+		table.createRow("Example values",true)
+		table.createRow(example,false)
+		container.appendChild(t)
+	}
+
+	var data = {
+		"resourceType": {
+			"type" : "String",
+			"description" : "The resource type that is being priced.",
+			"examples" : '"vm", "storage" etc.'
+
+		},
+		"descriptionVector" : {
+			"type" : "Object",
+			"description" : "Vector used to describe the resource. NB : If the resource is dynamic (i.e. it can take all the values), this vector is empty.",
+			"examples" : '2 VCPU, 2GB RAM 10GB Disk vm : <i>{"vcpu" : 2, "ram" : 4, "disk" : 10}</i><br/>1 TB fixed-size disk : <i>{"disk" : 1024}</i>'
+		},
+		"timeCode" : {
+			"type" : "String",
+			"description" : 'The time period associated with the price. This should follow the same conventions as for unitCode. If the price is not time-based (for example charged per unit of something), then this should use the value "C62" (no unit) or do not specify this attribute.',
+			"examples" : 'per Year = ANN<br/> per Month = MON<br/> per Week = WEE<br/> per Day = DAY<br/> per Hour = HUR<br/> per Minute = MIN<br/> per Second = SEC'
+		},
+
+		"discount" : {
+			"type" : "Object",
+			"description" : 'A list of attributes describing the way to apply discounts on the resource. Attributes are : <a href="/#discount.method">method</a>, <a href="/#discount.steps">steps</a>, <a href="/#discount.reset">reset</a>',
+			"examples" : 'Google Compute Engine egress network : <i>{"method" : "Progressive", "steps": [ [1024,1/12], [9216,1/3] ], "reset": False}</i>'
+		},
+
+	}
+	function display(){
+		var url_elements = window.location.href.split("#")
+		if(url_elements.length == 1){
+			for (var a in data) {
+				var obj = data[a]
+				createElement(a,obj["type"],obj["description"],obj["examples"])
+			}
+		}
+		else{
+			var obj = data[url_elements[1]]
+			createElement(url_elements[1],obj["type"],obj["description"],obj["examples"])
+			document.title = url_elements[1]+" attribute"
+		}
+	}
+	
+
+	display()
+</script>
+</body>
+
+</html>
