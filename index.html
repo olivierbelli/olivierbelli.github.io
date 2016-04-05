@@ -58,7 +58,12 @@
 		"resourceType": {
 			"type" : "String",
 			"description" : "The resource type that is being priced.",
-			"examples" : '"vm", "storage" etc.'
+			"examples" : '<i>"vm"</i> : represents a virtual machine entity<br/>\
+			<i>"disk_ssd"</i> : represents an additional disk entity [SSD]<br/>\
+			<i>"disk_standard"</i> : represents an additional disk entity [standard]<br/>\
+			<i>"network_in"</i> : represents a networking entity [ingress]<br/>\
+			<i>"network_out"</i> : represents a networking entity [egress]<br/>\
+			<i>"objectstorage"</i> : represents an object storage entity<br/>'
 
 		},
 		"descriptionVector" : {
@@ -80,7 +85,7 @@
 		"discount.method" : {
 			"type" : "String",
 			"description" : 'Method to use for calculating the discount. Supported values are "Progressive", "Reservation", and "None". "None" is the default if the attribute is not present',
-			"examples" : '<i>None or "None"</i><br/><i>"Progressive"</i><br/><i>"Reservation"</i><br/>'
+			"examples" : '<i>"None"</i><br/><i>"Progressive"</i><br/><i>"Reservation"</i><br/>'
 		},
 		"discount.steps" : {
 			"type" : "Array",
