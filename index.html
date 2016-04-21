@@ -92,9 +92,9 @@
 			"description" : 'Additional information for calculating a pricing discount. This is an array of pairs of numeric values that depend on the charge method indicated by the discount method, unitCode and timeCode.',
 			"examples" : '1/12 discount after 1024GB of data, 1/3 after 9216 GB : <i>[ [1024,1/12], [9216,1/3] ]</i>'
 		},
-		"discount.reset - DEPRECATED" : {
+		"discount.reset" : {
 			"type" : "Boolean",
-			"description" : 'Value to describe if the discount has a maximum or if it resets after the last value (circling).',
+			"description" : '<b style="color:red">[DEPRECATED]</b> Value to describe if the discount has a maximum or if it resets after the last value (circling).',
 			"examples" : 'If the value is <i>True</i>, then a reset will occur and the price computation will start at 0% discount again'
 		},
 		"freeQuantity" : {
