@@ -77,11 +77,18 @@
 			"examples" : 'per Year = ANN<br/> per Month = MON<br/> per Week = WEE<br/> per Day = DAY<br/> per Hour = HUR<br/> per Minute = MIN<br/> per Second = SEC'
 		},
 
-		"discount" : {
-			"type" : "Object",
-			"description" : 'A list of attributes describing the way to apply discounts on the resource. Attributes are : <a href="/#discount.method">method</a>, <a href="/#discount.steps">steps</a>, <a href="/#discount.reset">reset</a>',
-			"examples" : 'Google Compute Engine egress network : <i>{"method" : "Progressive", "steps": [ [1024,1/12], [9216,1/3] ], "reset": False}</i>'
+		"billingTimeCode" : {
+			"type" : 'String, <a href="/#timeCode">timeCode</a>',
+			"description" : 'Value describing the billing period for the item. Note that this value also indicates when to reset the discounts. This should follow the same conventions as for unitCode. If the price is not time-based (for example charged per unit of something), then this should use the value "C62" (no unit) or do not specify this attribute.',
+			"examples" : 'per Year = ANN<br/> per Month = MON<br/> per Week = WEE<br/> per Day = DAY<br/> per Hour = HUR<br/> per Minute = MIN<br/> per Second = SEC'
 		},
+
+		"sampleTimeCode" : {
+			"type" : 'String, <a href="/#timeCode">timeCode</a>',
+			"description" : 'Value which is the smallest billing unit. This should follow the same conventions as for unitCode. If the price is not time-based (for example charged per unit of something), then this should use the value "C62" (no unit) or do not specify this attribute.',
+			"examples" : 'per Year = ANN<br/> per Month = MON<br/> per Week = WEE<br/> per Day = DAY<br/> per Hour = HUR<br/> per Minute = MIN<br/> per Second = SEC'
+		},
+
 		"discount.method" : {
 			"type" : "String",
 			"description" : 'Method to use for calculating the discount. Supported values are "Progressive", "Reservation", and "None". "None" is the default if the attribute is not present',
