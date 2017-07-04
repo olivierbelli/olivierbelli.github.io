@@ -1,0 +1,26 @@
+body{
+	font-family:"Verdana",sans-serif;
+	background-image: url("http://129.194.184.44:8069/wp-content/uploads/2017/04/cropped-mountain_chalet_covered_with_snow-wallpaper-2560x1600.jpg");
+	background-attachment:fixed;
+	background-repeat:no-repeat;
+	background-position:center 0%;
+	background-size:cover;
+}
+
+.main{
+	color:white;
+	text-align:center;
+	padding: 10px;
+	position: absolute;
+    top:0;
+    max-width:800px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+iframe{
+	border:1px solid #afafff;
+	border-radius: 15px;
+	padding: 5px;
+}
