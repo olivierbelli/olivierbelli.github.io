@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title></title>
+	<style type="text/css">
+		body{
+			background-color:#efefef;
+			font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+		}
+		#container{
+			width:100%;
+			text-align:center;
+			-moz-user-select: -moz-none;
+			-khtml-user-select: none;
+			-webkit-user-select: none;
+			-o-user-select: none;
+			user-select: none;
+		}
+		#filterView{
+			display:block;
+		}
+		#cardsView{
+			display:none;
+		}
+		#card{
+			height:250px;
+			width: 400px;
+			border:1px solid black;
+			margin: auto;
+			margin-top:20px;
+			margin-bottom:20px;
+			background-color:#FFFFFA;
+			font-size: 40px;
+
+		}
+		#centered{
+			display: table;
+			height:100%;
+			margin: auto;
+			width:70%;
+		}
+		#cardText{
+			display: table-cell;
+			vertical-align: middle;
+		}
+		.sidebutton{
+			margin-top:100px;
+			width:50px;
+			height:50px;
+		}
+		.left{
+			float:left;
+		}
+		.right{
+			float:right;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="filterView">
+			<h4>Korean Vocabulary</h4>
+			Settings<br/>
+			<input id="kte" type="checkbox"></input> Use korean to english<br/>
+			To-do : filters...<br/>
+			<button id="start">Start!</button>
+		</div>
+		<div id="cardsView">
+			
+			<div id="card">
+				<div class="sidebutton left" id="previous"><</div>
+				<div class="sidebutton right" id="next">></div>
+					<div id="centered">
+					<div id="cardText"></div>
+					</div>
+			</div>
+			
+			<div id="commands">
+				<button id="back">Settings</button>
+				<button id="shuffle">Shuffle!</button>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript" src="voc.js"></script>
+
+<script type="text/javascript" src="VocApp.js"></script>
+</body>
+</html>
