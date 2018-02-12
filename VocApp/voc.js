@@ -65,6 +65,23 @@ to hate,싫어하다
 to greet,인사하다
 to take a shower,샤워하다`
 
-vocabulary = vocabulary.concat(transform(foundationRequiredVoc,["Foundation","Required"],"Olivier"),
-	transform(foundationVerbs,["Foundation","Verbs"],"Olivier")
+
+const numbers = `0,공
+1,일
+2,이
+3,삼
+4,사
+5,오
+6,육
+7,칠
+8,팔
+9,구
+10,십
+100,백
+1'000,천
+10'000,만`
+
+vocabulary = vocabulary.concat(transform(foundationRequiredVoc,"Foundation-Required","Olivier"),
+	transform(foundationVerbs,"Foundation-Verbs","Olivier"),
+	transform(numbers,"Beginner-Numbers","Olivier")
 	)

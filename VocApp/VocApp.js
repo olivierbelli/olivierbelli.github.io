@@ -15,7 +15,7 @@ const shuffle = (a) => {
     }
     return a
 }
-
+/*
 const createFilterOptions = (arr) => {
 	let options = {}
 	for(let i = 0; i < arr.length;i++){
@@ -28,6 +28,25 @@ const createFilterOptions = (arr) => {
 	}
 	
 	return options
+}*/
+
+
+const getCategories = (arr) => {
+	let categories = {}
+	for(let i = 0; i < arr.length;i++){
+		categories[arr[i].category] = true
+	}
+	return Object.keys(categories)
+}
+
+
+const createFilterSettings = (arr) => {
+	let categories = getCategories(arr)
+	let filters = document.querySelector("#filters")
+	filters.innerHTML = ""
+	for(let i = 0; i < categories.length;i++){
+		filters.innerHTML+="<input class='FCAT' value="+categories[i]+" type='checkbox' checked></input>"+categories[i]+"<br/>"
+	}
 }
 
 const card = {
@@ -97,7 +116,8 @@ let filteredPool;
 let currentStack;
 const init =() => {
 	//Get filters
-	filteredPool = vocabulary.slice(0)//applyFilters(vocabulary,filters)
+	let categories = Array.prototype.slice.call(document.querySelectorAll(".FCAT")).filter(e => e.checked).map(e => e.value)
+	filteredPool = vocabulary.filter(el => contains(categories,el.category))
 	currentStack = new WordStack(filteredPool)
 	nextWord()
 }
@@ -134,7 +154,7 @@ document.querySelector("#shuffle").onclick = () =>{
 	currentStack.shuffle()
 	nextWord()
 }
-
+createFilterSettings(vocabulary)
 
 
 
