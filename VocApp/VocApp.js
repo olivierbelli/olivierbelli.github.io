@@ -182,6 +182,16 @@ document.querySelector("#mastered").onclick = function(e){
 	e.stopPropagation()
 }
 
+const hammertime = new Hammer(document.querySelector("#card"))
+hammertime.on('swipeleft', function(ev) {
+	document.querySelector("#mastered").checked = false
+	nextWord()
+})
+hammertime.on('swiperight', function(ev) {
+	document.querySelector("#mastered").checked = false
+	prevWord()
+})
+
 createFilterSettings(vocabulary)
 
 
