@@ -81,6 +81,8 @@ const numbers = `0,공
 1'000,천
 10'000,만`
 
+const koreannumbers = ``
+
 vocabulary = vocabulary.concat(transform(foundationRequiredVoc,"Foundation-Required","Olivier"),
 	transform(foundationVerbs,"Foundation-Verbs","Olivier"),
 	transform(numbers,"Beginner-Numbers","Olivier")

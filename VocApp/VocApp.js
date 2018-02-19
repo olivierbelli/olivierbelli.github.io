@@ -81,17 +81,37 @@ class WordStack {
 		this.words = arr
 		this.index = -1
 	}
+	incrementIndex(){
+		this.index = (this.index+1)%this.words.length
+	}
+	decrementIndex(){
+		this.index = this.index-1 > -1 ? this.index-1 : this.words.length-1
+	}
+	currentWord(){
+		return this.words[this.index]
+	}
 	shuffle(){
 		shuffle(this.words)
 		this.index = -1
 	}
-	next(){
-		this.index = (this.index+1)%this.words.length
-		return this.words[this.index]
+	browse(direction){
+		do{
+			if(direction >= 0) 
+				this.incrementIndex() 
+			else 
+				this.decrementIndex()
+		}while(this.currentWord().skip)
+		return this.currentWord()
 	}
 	previous(){
-		this.index = this.index-1 > -1 ? this.index-1 : this.words.length-1
-		return this.words[this.index]
+		return this.browse(-1)
+	}
+	next(){
+		return this.browse(1)
+	}
+	markSkippable(index,val){
+		if(this.words[index])
+			this.words[index].skip = val === undefined ? true : val
 	}
 }
 
@@ -139,10 +159,12 @@ document.querySelector("#back").onclick = () =>{
 }
 
 document.querySelector("#next").onclick = (e) =>{
+	document.querySelector("#mastered").checked = false
 	nextWord()
 	e.stopPropagation()
 }
 document.querySelector("#previous").onclick = (e) =>{
+	document.querySelector("#mastered").checked = false
 	prevWord()
 	e.stopPropagation()
 }
@@ -154,6 +176,12 @@ document.querySelector("#shuffle").onclick = () =>{
 	currentStack.shuffle()
 	nextWord()
 }
+
+document.querySelector("#mastered").onclick = function(e){
+	currentStack.markSkippable(currentStack.index,this.checked)
+	e.stopPropagation()
+}
+
 createFilterSettings(vocabulary)
 
 

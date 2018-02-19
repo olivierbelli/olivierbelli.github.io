@@ -34,6 +34,7 @@
 			margin-bottom:20px;
 			background-color:#FFFFFA;
 			font-size: 40px;
+			position: relative;
 
 		}
 		#centered{
@@ -57,6 +58,14 @@
 		.right{
 			float:right;
 		}
+
+		#mastereddiv{
+			font-size:12px;
+			position: absolute;
+			top:0px;
+			right:0px;
+
+		}
 	</style>
 </head>
 <body>
@@ -76,8 +85,9 @@
 				<div class="sidebutton left" id="previous"><</div>
 				<div class="sidebutton right" id="next">></div>
 					<div id="centered">
-					<div id="cardText"></div>
+						<div id="cardText"></div>
 					</div>
+				<div id="mastereddiv">Mastered?<input id="mastered" type="checkbox"></input></div>
 			</div>
 			
 			<div id="commands">
