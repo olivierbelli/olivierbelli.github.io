@@ -45,7 +45,7 @@ to drink,마시다,
 to sleep,자다
 to teach,가르치다
 to learn,배우다
-to see/watch/look,보다
+to see - watch - look,보다
 to read,읽다
 to write,쓰다
 to buy,사다
@@ -83,7 +83,28 @@ const numbers = `0,공
 
 const koreannumbers = ``
 
+const adjectives = `many,많다
+few,적다
+big,크다
+small,작다
+long,길다
+short,짪다
+distant - far away,멀다
+close,가깦다
+good quality,좋다
+bad quality,나쁘다
+cold,춥다
+hot,덥다
+dark,어둡다
+bright,밝다
+heavy,무겁다
+lightweight,가볍다
+hard,어렵다
+easy,쉽다
+slim,나씬하다`
+
 vocabulary = vocabulary.concat(transform(foundationRequiredVoc,"Foundation-Required","Olivier"),
 	transform(foundationVerbs,"Foundation-Verbs","Olivier"),
-	transform(numbers,"Beginner-Numbers","Olivier")
+	transform(numbers,"Beginner-Numbers","Olivier"),
+	transform(adjectives,"Beginner-Adjectives","Olivier")
 	)

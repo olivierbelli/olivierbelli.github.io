@@ -53,6 +53,7 @@ const card = {
 	div : document.querySelector("#cardText"),
 	word: undefined,
 	state: 1,
+	listeners : [],
 	update: function(){
 		this.setContent(this.state == 1 ? this.word.english : this.word.korean)
 	},
@@ -65,6 +66,7 @@ const card = {
 	},
 	setContent: function(content) {
 		this.div.innerHTML = content
+		this.change()
 	},
 	flip :function() {
 		this.changeState()
@@ -72,6 +74,12 @@ const card = {
 	setWord : function(newword) {
 		this.word = newword
 		this.changeState(document.querySelector("#kte").checked ? -1 : 1)
+	},
+	addOnChangeEventListener : function(f){
+		this.listeners.push(f)
+	},
+	change: function(){
+		this.listeners.forEach(f => f(this))
 	},
 }
 
@@ -159,12 +167,10 @@ document.querySelector("#back").onclick = () =>{
 }
 
 document.querySelector("#next").onclick = (e) =>{
-	document.querySelector("#mastered").checked = false
 	nextWord()
 	e.stopPropagation()
 }
 document.querySelector("#previous").onclick = (e) =>{
-	document.querySelector("#mastered").checked = false
 	prevWord()
 	e.stopPropagation()
 }
@@ -184,12 +190,21 @@ document.querySelector("#mastered").onclick = function(e){
 
 const hammertime = new Hammer(document.querySelector("#card"))
 hammertime.on('swipeleft', function(ev) {
-	document.querySelector("#mastered").checked = false
 	nextWord()
 })
 hammertime.on('swiperight', function(ev) {
-	document.querySelector("#mastered").checked = false
 	prevWord()
+})
+
+card.addOnChangeEventListener(c => {
+	document.querySelector("#mastered").checked = c.word.skip
+})
+
+card.addOnChangeEventListener(c => {
+	let total = currentStack.words.length
+	let currentindex = currentStack.index
+	let mastered = currentStack.words.filter( w => w.skip).length
+	document.querySelector("#numberdiv").innerHTML = currentindex+"/"+total+" - mastered:"+mastered
 })
 
 createFilterSettings(vocabulary)
